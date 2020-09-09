@@ -12,11 +12,9 @@ typedef struct Item{
 	Produto *Produto = NULL;
 }Item;
 
-typedef struct Item* Lista;
-
 typedef struct Venda{
 	char data[10];
-	struct Item *prox;
+	Item *vItens[5];
 	int quantVenda=0;
 }Venda;
 
