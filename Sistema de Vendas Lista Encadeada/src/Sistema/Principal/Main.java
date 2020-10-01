@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import Sistema.Entidades.EncadeadaProduto;
+import Sistema.Entidades.Produto;
 
 public class Main {
 
@@ -29,6 +30,9 @@ public class Main {
 			switch(opcao) {
 
 			case 1:
+				EncadeadaProduto obj = new EncadeadaProduto();
+				Produto produto = new Produto(null, 0);
+				
 				int opcao2 = 0;
 				do {
 					Main.LimparTela();
@@ -50,9 +54,27 @@ public class Main {
 
 					case 1:
 						EncadeadaProduto.listarElementos();
+						
+						System.out.println("Dados listados com Sucesso!");
+						System.in.read();
 						break;
 						
 					case 2:
+						
+						System.out.println("Digite o Nome do Produto: ");
+						produto.setNome(entrada.nextLine());
+						System.out.println("Digite o valor do Produto: ");
+						produto.setPreco(entrada.nextDouble());
+						entrada.nextLine();
+						
+						if(obj.inserirElementoFim(produto) == true) {
+							System.out.println("\nDados Cadastrados com Sucesso!");
+							System.in.read();
+						}else {
+							System.out.println("\nOcorreu um erro tente novamente!");
+							System.in.read();
+						}
+						
 						break;
 					
 					case 3:
