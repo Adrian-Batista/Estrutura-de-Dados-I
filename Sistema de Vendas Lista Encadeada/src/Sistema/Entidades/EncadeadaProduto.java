@@ -1,26 +1,26 @@
 package Sistema.Entidades;
 
-public class Encadeada {
+public class EncadeadaProduto {
 	public class Elemento{
 
-		int valor;
+		Produto produto;
 		Elemento prox;
 
-		public Elemento(int valor){
-			this.valor = valor;
+		public Elemento(Produto produto){
+			this.produto = produto;
 			this.prox = null;
 		}		
-		public Elemento (int valor, Elemento prox){
-			this.valor = valor;
+		public Elemento (Produto produto, Elemento prox){
+			this.produto = produto;
 			this.prox = prox;
 		}
 	}
 
-	Elemento inicio;
+	static Elemento inicio;
 	Elemento fim;
-	int tamanho;
+	static int tamanho;
 
-	public Encadeada(){
+	public EncadeadaProduto(){
 		inicio = null;
 		fim = null;
 		tamanho = 0;
@@ -30,16 +30,16 @@ public class Encadeada {
 		return tamanho;
 	}
 
-	public void listarElementos(){
+	public static void listarElementos(){
 		Elemento aux = inicio;
 		while(aux!=null){
-			System.out.println(aux.valor +" "+aux.prox);
+			System.out.println(tamanho + ") "+ aux.produto.getNome() + " - Valor: "+ aux.produto.getPreco());
 			aux = aux.prox;
 		}
 	}
 
-	public Boolean inserirElementoInicio(int valor){
-		Elemento novo = new Elemento(valor, inicio);
+	public Boolean inserirElementoInicio(Produto produto){
+		Elemento novo = new Elemento(produto, inicio);
 		inicio = novo;
 		if (tamanho==0){
 			fim = novo;
@@ -48,8 +48,8 @@ public class Encadeada {
 		return true;
 	}
 
-	public Boolean inserirElementoFim(int valor){
-		Elemento novo = new Elemento(valor);
+	public Boolean inserirElementoFim(Produto produto){
+		Elemento novo = new Elemento(produto);
 		if (tamanho == 0){
 			inicio = novo;
 			fim = novo;
@@ -61,18 +61,18 @@ public class Encadeada {
 		return true;
 	}
 
-	public Boolean inserirElementoIndice(int valor, int indice){
+	public Boolean inserirElementoIndice(Produto produto, int indice){
 		if (indice < 0 || indice > tamanho)
 			return false;
 		else if(indice == 0)
-			return inserirElementoInicio(valor);
+			return inserirElementoInicio(produto);
 		else if(indice == tamanho)
-			return inserirElementoFim(valor);
+			return inserirElementoFim(produto);
 
 		Elemento aux = inicio;
 		for (int i=0; i<indice-1; i++)
 			aux = aux.prox;
-		Elemento novo = new Elemento(valor, aux.prox);
+		Elemento novo = new Elemento(produto, aux.prox);
 		aux.prox = novo;
 		tamanho++;
 		return true;
@@ -128,16 +128,16 @@ public class Encadeada {
 		return true;
 	}
 
-	public Boolean removerElementoValor(int valor){
+	public Boolean removerElementoProduto(Produto produto){
 		if (tamanho == 0)
 			return false;
 
-		if (inicio.valor == valor)
+		if (inicio.produto.equals(produto))
 			return removerInicio();
 
 		Elemento aux = inicio;
 		while(aux.prox != null){
-			if (aux.prox.valor == valor)
+			if (aux.prox.produto.equals(produto))
 				break;
 			else
 				aux = aux.prox;

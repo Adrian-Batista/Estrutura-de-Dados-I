@@ -15,10 +15,9 @@ public class Main {
 			Scanner entrada = new Scanner(System.in);
 			System.out.println("\n\n BEM VINDO AO YOUTUBE ");	
 			System.out.println("\n================================= \n|\t\t\t\t|");
-			System.out.println("| ( 1 ) - ADICIONAR VENDA       | \n|\t\t\t\t|");
-			System.out.println("| ( 2 ) - CONSULTAR VENDA       | \n|\t\t\t\t|");
-			System.out.println("| ( 3 ) - ATUALIZAR VENDA       | \n|\t\t\t\t| ");
-			System.out.println("| ( 4 ) - REMOVER VENDA         | \n|\t\t\t\t| ");
+			System.out.println("| ( 1 ) - MENU DE PRODUTOS       | \n|\t\t\t\t|");
+			System.out.println("| ( 2 ) - ADICIONAR VENDA       | \n|\t\t\t\t|");
+			System.out.println("| ( 3 ) - LISTAR VENDAS       | \n|\t\t\t\t| ");
 			System.out.println("| ( 0 ) - SAIR                  | \n|\t\t\t\t|");
 			System.out.println("=================================\n");
 
@@ -30,18 +29,30 @@ public class Main {
 			switch(opcao) {
 
 			case 1:
-				System.out.println("Digite a data da venda:");
+				int opcao2 = 0;
+				do {
+					Main.LimparTela();
+					Scanner entrada = new Scanner(System.in);
+					System.out.println("\n\n BEM VINDO AO YOUTUBE ");	
+					System.out.println("\n================================= \n|\t\t\t\t|");
+					System.out.println("| ( 1 ) - MENU DE PRODUTOS       | \n|\t\t\t\t|");
+					System.out.println("| ( 2 ) - ADICIONAR VENDA       | \n|\t\t\t\t|");
+					System.out.println("| ( 3 ) - LISTAR VENDAS       | \n|\t\t\t\t| ");
+					System.out.println("| ( 0 ) - SAIR                  | \n|\t\t\t\t|");
+					System.out.println("=================================\n");
 
-				System.out.println("Escolha um dos produtos a baixo:\n\n");
-				System.out.println("1 - Bermuda\n");
-				System.out.println("2 - Sapato\n");
-				System.out.println("3 - Camiseta\n");
-				System.out.println("4 - Calção\n");
-				System.out.println("5 - Tênis\n");
-				System.out.println("6 - Óculos\n");
-				int escolha = entrada.nextInt();
-				entrada.nextLine();
-				Produto.EscolheProduto(escolha);
+					System.out.println(" Escolha uma das opções: ");
+					opcao = entrada.nextInt();
+					entrada.nextLine();
+					System.out.print("\n");
+
+					switch(opcao2) {
+
+
+
+					}
+				}while (opcao2 != 0);
+
 
 				break;
 			case 2:
@@ -50,10 +61,6 @@ public class Main {
 
 			case 3:
 				System.out.println("opcao3");
-				break;
-
-			case 4:
-				System.out.println("opcao4");
 				break;
 
 			case 0:
