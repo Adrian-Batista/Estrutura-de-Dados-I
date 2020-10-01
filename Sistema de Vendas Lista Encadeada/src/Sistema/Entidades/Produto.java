@@ -10,7 +10,7 @@ public class Produto {
 		this.preco = preco;
 	}
 	
-	public static String EscolheProduto(int auxiliar) {
+	public static int EscolheProduto(int auxiliar) {
 		if(auxiliar==1) {
 			
 		}
