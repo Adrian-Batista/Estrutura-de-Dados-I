@@ -55,10 +55,16 @@ public class Main {
 					switch(opcao2) {
 
 					case 1:
-						obj.listarElementos();
+						if(obj.listarElementos() == true) {
+							System.out.println("\nDados listados com Sucesso!");
+							System.in.read();
+						}else {
+							Main.LimparTela();
+							System.out.println("Lista Vazia!");
+							System.in.read();
+						}
 
-						System.out.println("Dados listados com Sucesso!");
-						System.in.read();
+						
 						break;
 
 					case 2:
@@ -73,13 +79,29 @@ public class Main {
 						obj.inserirElementoIndice(produto, indice);
 						indice++;
 						
-						
 						System.out.println("\nDados Cadastrados com Sucesso!");
 						System.in.read();
 
 						break;
 
 					case 3:
+						break;
+						
+					case 4:
+					
+						System.out.println("Digite o Nome do Produto: ");
+						String remover = entrada.nextLine();
+						
+						if(obj.removerElementoValor(remover) == true) {
+							System.out.println("\nDados Removidos com Sucesso!");
+							System.in.read();
+						}else {
+							System.out.println("\nDados não localizados tente Novamente!");
+							System.in.read();
+						}
+						
+						
+						
 						break;
 
 					}

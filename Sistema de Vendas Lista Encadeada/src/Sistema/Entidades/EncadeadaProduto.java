@@ -30,14 +30,20 @@ public class EncadeadaProduto {
 		return tamanho;
 	}
 
-	public void listarElementos(){
+	public Boolean listarElementos(){
 		Elemento aux = inicio;
 		int cont = 0;
+		
+		if(tamanho == 0) {
+			return false;
+		}
+
 		while(aux!=null){
 			System.out.println(cont + " ) Item: " + aux.produto.getNome() + " | Valor : " + aux.produto.getPreco());
 			aux = aux.prox;
 			cont++;
 		}
+		return true;
 	}
 
 	public Boolean inserirElementoInicio(Produto produto){
@@ -130,16 +136,16 @@ public class EncadeadaProduto {
 		return true;
 	}
 
-	public Boolean removerElementoValor(Produto produto){
+	public Boolean removerElementoValor(String remover){
 		if (tamanho == 0)
 			return false;
 
-		if (inicio.produto.getNome().contentEquals(produto.getNome()))
+		if (inicio.produto.getNome().contentEquals(remover))
 			return removerInicio();
 
 		Elemento aux = inicio;
 		while(aux.prox != null){
-			if (aux.prox.produto.getNome().contentEquals(produto.getNome()))
+			if (aux.prox.produto.getNome().contentEquals(remover))
 				break;
 			else
 				aux = aux.prox;
