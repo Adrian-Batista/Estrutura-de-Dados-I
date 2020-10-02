@@ -120,23 +120,24 @@ public class EncadeadaProduto {
 		}
 	}
 
-	public Boolean removerElementoIndice(int indice){
-		if (indice < 0 || indice > tamanho-1)
+	public Boolean AtualizarElementoIndice(int indice, Produto produto){
+		if (indice < 0 || indice > tamanho)
 			return false;
-		else if (indice == 0)
-			return removerInicio();
-		else if (indice == tamanho-1)
-			return removerFim();
-
+		
 		Elemento aux = inicio;
-		for(int i=0; i<indice-1; i++)
-			aux=aux.prox;
-		aux.prox = aux.prox.prox;
-		tamanho--;
+		int cont = 0;
+		while(aux!=null){
+			if(indice == cont) {
+				aux.produto = produto;
+			}
+			aux = aux.prox;
+			cont++;
+		}
+		
 		return true;
 	}
 
-	public Boolean removerElementoValor(String remover){
+	public Boolean removerElementoProduto(String remover){
 		if (tamanho == 0)
 			return false;
 

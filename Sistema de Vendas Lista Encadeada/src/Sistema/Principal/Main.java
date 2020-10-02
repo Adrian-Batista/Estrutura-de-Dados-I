@@ -85,6 +85,27 @@ public class Main {
 						break;
 
 					case 3:
+						Produto update = new Produto(null, 0);
+						
+						System.out.println("Digite o número / id do produto a ser atualizado:");
+						int id = entrada.nextInt();
+						entrada.nextLine();
+						
+						System.out.println("Digite o Nome do Produto atual: ");
+						update.setNome(entrada.nextLine());
+						System.out.println("Digite o valor do Produto atual: ");
+						update.setPreco(entrada.nextDouble());
+						entrada.nextLine();
+						
+						if(obj.AtualizarElementoIndice(id, update) == true) {
+							System.out.println("\nDados Aualizados com Sucesso!");
+							System.in.read();
+						}else {
+							Main.LimparTela();
+							System.out.println("Dados não localizados tente novamente!");
+							System.in.read();
+						}
+						
 						break;
 						
 					case 4:
@@ -92,9 +113,10 @@ public class Main {
 						System.out.println("Digite o Nome do Produto: ");
 						String remover = entrada.nextLine();
 						
-						if(obj.removerElementoValor(remover) == true) {
+						if(obj.removerElementoProduto(remover) == true) {
 							System.out.println("\nDados Removidos com Sucesso!");
 							System.in.read();
+							indice--;
 						}else {
 							System.out.println("\nDados não localizados tente Novamente!");
 							System.in.read();
