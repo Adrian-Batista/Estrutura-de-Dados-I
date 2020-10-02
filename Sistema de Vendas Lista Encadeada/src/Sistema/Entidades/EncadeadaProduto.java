@@ -130,16 +130,16 @@ public class EncadeadaProduto {
 		return true;
 	}
 
-	public Boolean removerElementoValor(int valor){
+	public Boolean removerElementoValor(Produto produto){
 		if (tamanho == 0)
 			return false;
 
-		if (inicio.valor == valor)
+		if (inicio.produto.getNome().contentEquals(produto.getNome()))
 			return removerInicio();
 
 		Elemento aux = inicio;
 		while(aux.prox != null){
-			if (aux.prox.valor == valor)
+			if (aux.prox.produto.getNome().contentEquals(produto.getNome()))
 				break;
 			else
 				aux = aux.prox;
