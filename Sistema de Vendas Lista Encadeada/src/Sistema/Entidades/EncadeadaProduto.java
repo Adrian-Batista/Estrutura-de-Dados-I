@@ -16,9 +16,9 @@ public class EncadeadaProduto {
 		}
 	}
 
-	static Elemento inicio;
+	Elemento inicio;
 	Elemento fim;
-	static int tamanho;
+	int tamanho;
 
 	public EncadeadaProduto(){
 		inicio = null;
@@ -30,11 +30,13 @@ public class EncadeadaProduto {
 		return tamanho;
 	}
 
-	public static void listarElementos(){
+	public void listarElementos(){
 		Elemento aux = inicio;
+		int cont = 0;
 		while(aux!=null){
-			System.out.println(tamanho + ") "+ aux.produto.getNome() + " - Valor: "+ aux.produto.getPreco());
+			System.out.println(cont + " ) Item: " + aux.produto.getNome() + " | Valor : " + aux.produto.getPreco());
 			aux = aux.prox;
+			cont++;
 		}
 	}
 
@@ -128,16 +130,16 @@ public class EncadeadaProduto {
 		return true;
 	}
 
-	public Boolean removerElementoProduto(Produto produto){
+	public Boolean removerElementoValor(int valor){
 		if (tamanho == 0)
 			return false;
 
-		if (inicio.produto.equals(produto))
+		if (inicio.valor == valor)
 			return removerInicio();
 
 		Elemento aux = inicio;
 		while(aux.prox != null){
-			if (aux.prox.produto.equals(produto))
+			if (aux.prox.valor == valor)
 				break;
 			else
 				aux = aux.prox;
@@ -166,5 +168,4 @@ public class EncadeadaProduto {
 			aux=aux.prox;
 		return aux;
 	}
-
 }

@@ -10,6 +10,8 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		int opcao = 0;
+		int indice = 0;
+		int aux = 10;
 		do {
 			if(opcao!=0)
 				Main.LimparTela();
@@ -31,8 +33,8 @@ public class Main {
 
 			case 1:
 				EncadeadaProduto obj = new EncadeadaProduto();
-				Produto produto = new Produto(null, 0);
 				
+
 				int opcao2 = 0;
 				do {
 					Main.LimparTela();
@@ -53,13 +55,14 @@ public class Main {
 					switch(opcao2) {
 
 					case 1:
-						EncadeadaProduto.listarElementos();
-						
+						obj.listarElementos();
+
 						System.out.println("Dados listados com Sucesso!");
 						System.in.read();
 						break;
-						
+
 					case 2:
+						Produto produto = new Produto(null, 0);
 						
 						System.out.println("Digite o Nome do Produto: ");
 						produto.setNome(entrada.nextLine());
@@ -67,21 +70,20 @@ public class Main {
 						produto.setPreco(entrada.nextDouble());
 						entrada.nextLine();
 						
-						if(obj.inserirElementoFim(produto) == true) {
-							System.out.println("\nDados Cadastrados com Sucesso!");
-							System.in.read();
-						}else {
-							System.out.println("\nOcorreu um erro tente novamente!");
-							System.in.read();
-						}
+						obj.inserirElementoIndice(produto, indice);
+						indice++;
 						
+						
+						System.out.println("\nDados Cadastrados com Sucesso!");
+						System.in.read();
+
 						break;
-					
+
 					case 3:
 						break;
 
 					}
-					
+
 				}while (opcao2 != 0);
 
 
@@ -103,9 +105,9 @@ public class Main {
 				System.in.read();
 
 			}
-			
+
 		}while (opcao != 0);
-		
+
 	}
 
 
