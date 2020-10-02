@@ -161,6 +161,18 @@ public class EncadeadaProduto {
 		tamanho--;
 		return true;
 	}
+	
+	public Produto VerificaProduto(String verifica){
+		if (tamanho == 0)
+			return null;
+
+		Elemento aux = inicio;
+		while(aux.prox != null){
+			if (aux.produto.getNome().contentEquals(verifica))
+				return aux.produto;
+		}
+		return null;
+	}
 
 	public Elemento getElemento(int indice){
 		if (indice < 0 || indice > tamanho-1)

@@ -4,15 +4,20 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import Sistema.Entidades.EncadeadaProduto;
+import Sistema.Entidades.EncadeadaVenda;
 import Sistema.Entidades.Produto;
+import Sistema.Entidades.Venda;
 
 public class Main {
 
 	public static void main(String[] args) throws IOException {
 		int opcao = 0;
 		int indice = 0;
-		int aux = 10;
 		do {
+			
+			Venda venda = new Venda(0, null);
+			EncadeadaProduto obj = new EncadeadaProduto();
+			
 			if(opcao!=0)
 				Main.LimparTela();
 			Scanner entrada = new Scanner(System.in);
@@ -32,8 +37,9 @@ public class Main {
 			switch(opcao) {
 
 			case 1:
-				EncadeadaProduto obj = new EncadeadaProduto();
 				
+				
+
 
 				int opcao2 = 0;
 				do {
@@ -64,21 +70,20 @@ public class Main {
 							System.in.read();
 						}
 
-						
 						break;
 
 					case 2:
 						Produto produto = new Produto(null, 0);
-						
+
 						System.out.println("Digite o Nome do Produto: ");
 						produto.setNome(entrada.nextLine());
 						System.out.println("Digite o valor do Produto: ");
 						produto.setPreco(entrada.nextDouble());
 						entrada.nextLine();
-						
+
 						obj.inserirElementoIndice(produto, indice);
 						indice++;
-						
+
 						System.out.println("\nDados Cadastrados com Sucesso!");
 						System.in.read();
 
@@ -86,17 +91,17 @@ public class Main {
 
 					case 3:
 						Produto update = new Produto(null, 0);
-						
+
 						System.out.println("Digite o número / id do produto a ser atualizado:");
 						int id = entrada.nextInt();
 						entrada.nextLine();
-						
+
 						System.out.println("Digite o Nome do Produto atual: ");
 						update.setNome(entrada.nextLine());
 						System.out.println("Digite o valor do Produto atual: ");
 						update.setPreco(entrada.nextDouble());
 						entrada.nextLine();
-						
+
 						if(obj.AtualizarElementoIndice(id, update) == true) {
 							System.out.println("\nDados Aualizados com Sucesso!");
 							System.in.read();
@@ -105,14 +110,14 @@ public class Main {
 							System.out.println("Dados não localizados tente novamente!");
 							System.in.read();
 						}
-						
+
 						break;
-						
+
 					case 4:
-					
+
 						System.out.println("Digite o Nome do Produto: ");
 						String remover = entrada.nextLine();
-						
+
 						if(obj.removerElementoProduto(remover) == true) {
 							System.out.println("\nDados Removidos com Sucesso!");
 							System.in.read();
@@ -121,23 +126,78 @@ public class Main {
 							System.out.println("\nDados não localizados tente Novamente!");
 							System.in.read();
 						}
-						
-						
-						
-						break;
 
+						break;
 					}
 
 				}while (opcao2 != 0);
 
-
 				break;
 			case 2:
-				System.out.println("opcao2");
+				
+				Produto objeto = new Produto(null, 0);
+				
+
+				System.out.println("Digite a data da venda:");
+				venda.setDate(entrada.nextInt());
+				entrada.nextLine();
+
+				int opcao3 = 0;
+				do {
+					Main.LimparTela();
+					System.out.println("\n\n-------------- MENU DE VENDAS --------------- ");	
+					System.out.println("\nData da Venda: " + venda.getDate());
+					System.out.println("\n=========================================== \n|\t\t\t\t\t  |");
+					System.out.println("| ( 1 ) - ADICIONAR PRODUTO               | \n|\t\t\t\t\t  |");
+					System.out.println("| ( 2 ) - VISUALIZAR PRODUTOS DISPONIVEIS | \n|\t\t\t\t\t  |");
+					System.out.println("| ( 0 ) - SAIR                            | \n|\t\t\t\t\t  |");
+					System.out.println("===========================================\n");
+
+					System.out.println(" Escolha uma das opções: ");
+					opcao3 = entrada.nextInt();
+					entrada.nextLine();
+					System.out.print("\n");
+
+					switch(opcao3) {
+
+					case 1:
+						
+						System.out.println("Digite o nome do Produto: ");
+						String verifica = entrada.nextLine();
+						
+						objeto = obj.VerificaProduto(verifica);
+						if(objeto==null) {
+							System.out.println("Nome não localizado tente novamente!");
+						}else {
+							venda.getListaItens().inserirElementoFim(objeto);
+						}
+						
+						break;
+						
+					case 2:
+						
+						if(obj.listarElementos() == true) {
+							System.out.println("\nDados listados com Sucesso!");
+							System.in.read();
+						}else {
+							Main.LimparTela();
+							System.out.println("Lista Vazia!");
+							System.in.read();
+						}
+
+						break;
+					}
+					
+				}while (opcao3 != 0);
+
 				break;
 
 			case 3:
-				System.out.println("opcao3");
+				
+				venda.getDate();
+				venda.getListaItens().listarElementos();
+				System.in.read();
+				
 				break;
 
 			case 0:
