@@ -14,10 +14,9 @@ public class Main {
 		int opcao = 0;
 		int indice = 0;
 		do {
-			
-			Venda venda = new Venda(0, null);
+
 			EncadeadaProduto obj = new EncadeadaProduto();
-			
+
 			if(opcao!=0)
 				Main.LimparTela();
 			Scanner entrada = new Scanner(System.in);
@@ -36,9 +35,9 @@ public class Main {
 
 			switch(opcao) {
 
-			case 1:
-				
-				
+			case 1: // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ MENU DE PRODUTOS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 
 
 				int opcao2 = 0;
@@ -133,71 +132,51 @@ public class Main {
 				}while (opcao2 != 0);
 
 				break;
-			case 2:
-				
-				Produto objeto = new Produto(null, 0);
-				
+
+			case 2: // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ADICIONAR VENDAS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 				System.out.println("Digite a data da venda:");
-				venda.setDate(entrada.nextInt());
+
+				Main.LimparTela();
+				System.out.println("\n\n-------------- MENU DE VENDAS --------------- ");	
+				System.out.println("\nData da Venda:  DATA");
+				System.out.println("\n=========================================== \n|\t\t\t\t\t  |");
+				System.out.println("| ( 1 ) - ADICIONAR PRODUTO               | \n|\t\t\t\t\t  |");
+				System.out.println("| ( 0 ) - SAIR                            | \n|\t\t\t\t\t  |");
+				System.out.println("===========================================\n");
+
+				System.out.println(" Escolha uma das opções: ");
+				opcao3 = entrada.nextInt();
 				entrada.nextLine();
+				System.out.print("\n");
 
-				int opcao3 = 0;
-				do {
-					Main.LimparTela();
-					System.out.println("\n\n-------------- MENU DE VENDAS --------------- ");	
-					System.out.println("\nData da Venda: " + venda.getDate());
-					System.out.println("\n=========================================== \n|\t\t\t\t\t  |");
-					System.out.println("| ( 1 ) - ADICIONAR PRODUTO               | \n|\t\t\t\t\t  |");
-					System.out.println("| ( 2 ) - VISUALIZAR PRODUTOS DISPONIVEIS | \n|\t\t\t\t\t  |");
-					System.out.println("| ( 0 ) - SAIR                            | \n|\t\t\t\t\t  |");
-					System.out.println("===========================================\n");
 
-					System.out.println(" Escolha uma das opções: ");
-					opcao3 = entrada.nextInt();
-					entrada.nextLine();
-					System.out.print("\n");
 
-					switch(opcao3) {
 
-					case 1:
-						
-						System.out.println("Digite o nome do Produto: ");
-						String verifica = entrada.nextLine();
-						
-						objeto = obj.VerificaProduto(verifica);
-						if(objeto==null) {
-							System.out.println("Nome não localizado tente novamente!");
-						}else {
-							venda.getListaItens().inserirElementoFim(objeto);
-						}
-						
-						break;
-						
-					case 2:
-						
-						if(obj.listarElementos() == true) {
-							System.out.println("\nDados listados com Sucesso!");
-							System.in.read();
-						}else {
-							Main.LimparTela();
-							System.out.println("Lista Vazia!");
-							System.in.read();
-						}
 
-						break;
-					}
-					
-				}while (opcao3 != 0);
+				System.out.println("Digite o nome do Produto: ");
+				String verifica = entrada.nextLine();
+
+				objeto = obj.VerificaProduto(verifica);
+				if(objeto==null) {
+					System.out.println("Nome não localizado tente novamente!");
+				}else {
+					venda.getListaItens().inserirElementoFim(objeto);
+				}
 
 				break;
 
-			case 3:
-				
+
+
+
+				break;
+
+			case 3: // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ LISTAR VENDAS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 				venda.getDate();
 				venda.getListaItens().listarElementos();
 				System.in.read();
-				
+
 				break;
 
 			case 0:

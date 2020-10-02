@@ -2,9 +2,9 @@ package Sistema.Entidades;
 
 public class Venda {
 	private int date;
-	private EncadeadaProduto listaItens;
+	private EncadeadaItem listaItens;
 	
-	public Venda(int date, EncadeadaProduto listaItens) {
+	public Venda(int date, EncadeadaItem listaItens) {
 		super();
 		this.date = date;
 		this.listaItens = listaItens;
@@ -18,11 +18,11 @@ public class Venda {
 		this.date = date;
 	}
 
-	public EncadeadaProduto getListaItens() {
+	public EncadeadaItem getListaItens() {
 		return listaItens;
 	}
 
-	public void setIListaItens(EncadeadaProduto listaItens) {
+	public void setIListaItens(EncadeadaItem listaItens) {
 		this.listaItens = listaItens;
 	}
 	

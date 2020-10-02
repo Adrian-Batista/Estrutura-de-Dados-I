@@ -1,17 +1,17 @@
 package Sistema.Entidades;
 
-public class EncadeadaProduto {
+public class EncadeadaItem {
 	public class Elemento{
 
-		Produto produto;
+		Item item;
 		Elemento prox;
 
-		public Elemento(Produto produto){
-			this.produto = produto;
+		public Elemento(Item item){
+			this.item = item;
 			this.prox = null;
 		}		
-		public Elemento (Produto produto, Elemento prox){
-			this.produto = produto;
+		public Elemento (Item item, Elemento prox){
+			this.item = item;
 			this.prox = prox;
 		}
 	}
@@ -20,7 +20,7 @@ public class EncadeadaProduto {
 	Elemento fim;
 	int tamanho;
 
-	public EncadeadaProduto(){
+	public EncadeadaItem(){
 		inicio = null;
 		fim = null;
 		tamanho = 0;
@@ -39,15 +39,15 @@ public class EncadeadaProduto {
 		}
 
 		while(aux!=null){
-			System.out.println(cont + " ) Item: " + aux.produto.getNome() + " | Valor : " + aux.produto.getPreco());
+			System.out.println(cont + " ) Item: " + aux.item.getProduto().getNome() + " | Valor : " + aux.item.getProduto().getPreco());
 			aux = aux.prox;
 			cont++;
 		}
 		return true;
 	}
 
-	public Boolean inserirElementoInicio(Produto produto){
-		Elemento novo = new Elemento(produto, inicio);
+	public Boolean inserirElementoInicio(Item item){
+		Elemento novo = new Elemento(item, inicio);
 		inicio = novo;
 		if (tamanho==0){
 			fim = novo;
@@ -56,8 +56,8 @@ public class EncadeadaProduto {
 		return true;
 	}
 
-	public Boolean inserirElementoFim(Produto produto){
-		Elemento novo = new Elemento(produto);
+	public Boolean inserirElementoFim(Item item){
+		Elemento novo = new Elemento(item);
 		if (tamanho == 0){
 			inicio = novo;
 			fim = novo;
@@ -69,18 +69,18 @@ public class EncadeadaProduto {
 		return true;
 	}
 
-	public Boolean inserirElementoIndice(Produto produto, int indice){
+	public Boolean inserirElementoIndice(Item item, int indice){
 		if (indice < 0 || indice > tamanho)
 			return false;
 		else if(indice == 0)
-			return inserirElementoInicio(produto);
+			return inserirElementoInicio(item);
 		else if(indice == tamanho)
-			return inserirElementoFim(produto);
+			return inserirElementoFim(item);
 
 		Elemento aux = inicio;
 		for (int i=0; i<indice-1; i++)
 			aux = aux.prox;
-		Elemento novo = new Elemento(produto, aux.prox);
+		Elemento novo = new Elemento(item, aux.prox);
 		aux.prox = novo;
 		tamanho++;
 		return true;
@@ -120,7 +120,7 @@ public class EncadeadaProduto {
 		}
 	}
 
-	public Boolean AtualizarElementoIndice(int indice, Produto produto){
+	public Boolean AtualizarElementoIndice(int indice, Item item){
 		if (indice < 0 || indice > tamanho)
 			return false;
 		
@@ -128,7 +128,7 @@ public class EncadeadaProduto {
 		int cont = 0;
 		while(aux!=null){
 			if(indice == cont) {
-				aux.produto = produto;
+				aux.item = item;
 			}
 			aux = aux.prox;
 			cont++;
@@ -141,12 +141,12 @@ public class EncadeadaProduto {
 		if (tamanho == 0)
 			return false;
 
-		if (inicio.produto.getNome().contentEquals(remover))
+		if (inicio.item.getProduto().getNome().contentEquals(remover))
 			return removerInicio();
 
 		Elemento aux = inicio;
 		while(aux.prox != null){
-			if (aux.prox.produto.getNome().contentEquals(remover))
+			if (aux.prox.item.getProduto().getNome().contentEquals(remover))
 				break;
 			else
 				aux = aux.prox;
@@ -168,8 +168,8 @@ public class EncadeadaProduto {
 
 		Elemento aux = inicio;
 		while(aux.prox != null){
-			if (aux.produto.getNome().contentEquals(verifica))
-				return aux.produto;
+			if (aux.item.getProduto().getNome().contentEquals(verifica))
+				return aux.item.getProduto();
 		}
 		return null;
 	}
