@@ -3,8 +3,9 @@ package Sistema.Principal;
 import java.io.IOException;
 import java.util.Scanner;
 
+import Sistema.Entidades.EncadeadaItem;
 import Sistema.Entidades.EncadeadaProduto;
-import Sistema.Entidades.EncadeadaVenda;
+import Sistema.Entidades.Item;
 import Sistema.Entidades.Produto;
 import Sistema.Entidades.Venda;
 
@@ -15,7 +16,9 @@ public class Main {
 		int indice = 0;
 		do {
 
-			EncadeadaProduto obj = new EncadeadaProduto();
+			EncadeadaProduto objProduto = new EncadeadaProduto();
+			EncadeadaItem objItem = new EncadeadaItem();
+
 
 			if(opcao!=0)
 				Main.LimparTela();
@@ -60,7 +63,7 @@ public class Main {
 					switch(opcao2) {
 
 					case 1:
-						if(obj.listarElementos() == true) {
+						if(objProduto.listarElementos() == true) {
 							System.out.println("\nDados listados com Sucesso!");
 							System.in.read();
 						}else {
@@ -80,7 +83,7 @@ public class Main {
 						produto.setPreco(entrada.nextDouble());
 						entrada.nextLine();
 
-						obj.inserirElementoIndice(produto, indice);
+						objProduto.inserirElementoIndice(produto, indice);
 						indice++;
 
 						System.out.println("\nDados Cadastrados com Sucesso!");
@@ -101,7 +104,7 @@ public class Main {
 						update.setPreco(entrada.nextDouble());
 						entrada.nextLine();
 
-						if(obj.AtualizarElementoIndice(id, update) == true) {
+						if(objProduto.AtualizarElementoIndice(id, update) == true) {
 							System.out.println("\nDados Aualizados com Sucesso!");
 							System.in.read();
 						}else {
@@ -117,7 +120,7 @@ public class Main {
 						System.out.println("Digite o Nome do Produto: ");
 						String remover = entrada.nextLine();
 
-						if(obj.removerElementoProduto(remover) == true) {
+						if(objProduto.removerElementoProduto(remover) == true) {
 							System.out.println("\nDados Removidos com Sucesso!");
 							System.in.read();
 							indice--;
@@ -135,47 +138,54 @@ public class Main {
 
 			case 2: // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ADICIONAR VENDAS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+				Venda venda = new Venda(0, null);
+				Item item = new Item(null, 0);
+				Produto prodVenda = new Produto(null, 0);
 				System.out.println("Digite a data da venda:");
-
-				Main.LimparTela();
-				System.out.println("\n\n-------------- MENU DE VENDAS --------------- ");	
-				System.out.println("\nData da Venda:  DATA");
-				System.out.println("\n=========================================== \n|\t\t\t\t\t  |");
-				System.out.println("| ( 1 ) - ADICIONAR PRODUTO               | \n|\t\t\t\t\t  |");
-				System.out.println("| ( 0 ) - SAIR                            | \n|\t\t\t\t\t  |");
-				System.out.println("===========================================\n");
-
-				System.out.println(" Escolha uma das opções: ");
-				opcao3 = entrada.nextInt();
+				venda.setDate(entrada.nextInt());
 				entrada.nextLine();
-				System.out.print("\n");
 
+				int opc = 0;
+				int cond = 0;
+				do {
+					do {
+						cond = 0;
+						System.out.println("Digite o nome do Produto: ");
+						String verifica = entrada.nextLine();
+						prodVenda = objProduto.VerificaProduto(verifica);
+						if(prodVenda==null) {
+							Main.LimparTela();
+							System.out.println("Nome não localizado tente novamente!\n\n");
+							cond++;
+						}
+					}while(cond != 0);
 
+					System.out.println("Digite a quantidade: ");
+					item.setQuantidade(entrada.nextInt());
+					entrada.nextLine();
 
+					do {
+						System.out.println("Deseja adicionar mais algum Item na Venda?");
+						System.out.println("Selecione 1 para SIM");
+						System.out.println("Selecione 2 para NÃO");
+						opc = entrada.nextInt();
+						entrada.nextLine();
+					}while(opc != 1 && opc != 2);
 
-
-				System.out.println("Digite o nome do Produto: ");
-				String verifica = entrada.nextLine();
-
-				objeto = obj.VerificaProduto(verifica);
-				if(objeto==null) {
-					System.out.println("Nome não localizado tente novamente!");
-				}else {
-					venda.getListaItens().inserirElementoFim(objeto);
-				}
+				}while(opc!=0);
 
 				break;
 
 
 
 
-				break;
+
 
 			case 3: // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ LISTAR VENDAS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-				venda.getDate();
+				/*venda.getDate();
 				venda.getListaItens().listarElementos();
-				System.in.read();
+				System.in.read();*/
 
 				break;
 
