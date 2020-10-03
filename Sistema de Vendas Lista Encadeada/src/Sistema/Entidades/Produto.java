@@ -3,18 +3,18 @@ package Sistema.Entidades;
 public class Produto {
 	private String nome;
 	private double preco;
-	
+
 	public Produto(String nome, double preco) {
 		super();
 		this.nome = nome;
 		this.preco = preco;
 	}
-	
+
 	public static int EscolheProduto(int auxiliar) {
 		if(auxiliar==1) {
-			
+
 		}
-		
+
 		return auxiliar;
 	}
 
@@ -33,7 +33,7 @@ public class Produto {
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
-	
+
 
 
 }

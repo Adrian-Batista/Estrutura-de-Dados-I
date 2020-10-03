@@ -15,10 +15,10 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		int opcao = 0;
 		int indice = 0;
-		
+
 		EncadeadaProduto objProduto = new EncadeadaProduto();
 		EncadeadaVenda objVenda = new EncadeadaVenda();
-		
+
 		do {
 
 			if(opcao!=0)
@@ -138,11 +138,11 @@ public class Main {
 				break;
 
 			case 2: // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ADICIONAR VENDAS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-				
+
 				EncadeadaItem objItem = new EncadeadaItem();
 				Venda venda = new Venda(0, objItem);
-				
-				
+
+
 				System.out.println("Digite a data da venda:");
 				venda.setDate(entrada.nextInt());
 				entrada.nextLine();
@@ -156,13 +156,13 @@ public class Main {
 						cond = 0;
 						System.out.println("Digite o Nome do produto: ");
 						String verifica = entrada.nextLine();
-						
-						
-						
+
+
+
 						item.setProduto(objProduto.VerificaProduto(verifica));
-						
-						
-						
+
+
+
 						if(item.getProduto().getNome() == null) {
 							Main.LimparTela();
 							System.out.println("Produto não localizado tente novamente!\n\n");
@@ -173,9 +173,9 @@ public class Main {
 					System.out.println("Digite a quantidade: ");
 					item.setQuantidade(entrada.nextInt());
 					entrada.nextLine();
-					
+
 					objItem.inserirElementoFim(item);
-					
+
 					do {
 						System.out.println("Deseja adicionar mais algum Item na Venda?");
 						System.out.println("Selecione 1 para SIM");
@@ -185,7 +185,7 @@ public class Main {
 					}while(opc != 1 && opc != 2);
 
 				}while(opc == 1);
-				
+
 				venda.setIListaItens(objItem);
 				objVenda.inserirElementoFim(venda);
 
@@ -212,7 +212,7 @@ public class Main {
 				System.in.read();
 
 			}
-
+			entrada.close();
 		}while (opcao != 0);
 
 	}

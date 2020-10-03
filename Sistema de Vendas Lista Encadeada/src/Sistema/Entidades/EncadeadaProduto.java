@@ -33,7 +33,7 @@ public class EncadeadaProduto {
 	public Boolean listarElementos(){
 		Elemento aux = inicio;
 		int cont = 0;
-		
+
 		if(tamanho == 0) {
 			return false;
 		}
@@ -123,7 +123,7 @@ public class EncadeadaProduto {
 	public Boolean AtualizarElementoIndice(int indice, Produto produto){
 		if (indice < 0 || indice > tamanho)
 			return false;
-		
+
 		Elemento aux = inicio;
 		int cont = 0;
 		while(aux!=null){
@@ -133,7 +133,7 @@ public class EncadeadaProduto {
 			aux = aux.prox;
 			cont++;
 		}
-		
+
 		return true;
 	}
 
@@ -161,12 +161,12 @@ public class EncadeadaProduto {
 		tamanho--;
 		return true;
 	}
-	
+
 	public Produto VerificaProduto(String verifica){
 		Produto vazio = new Produto(null, 0);
 		if (tamanho == 0)
 			return vazio;
-		
+
 		Elemento aux = inicio;
 		while(aux != null){
 			if (aux.produto.getNome().contentEquals(verifica)) {

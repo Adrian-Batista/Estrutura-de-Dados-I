@@ -32,8 +32,6 @@ public class EncadeadaVenda {
 
 	public Boolean listarElementos(){
 		Elemento aux = inicio;
-		int cont = 0;
-
 		if(tamanho == 0) {
 			return false;
 		}
@@ -43,7 +41,6 @@ public class EncadeadaVenda {
 			System.out.println(" Data da Venda: "  + aux.venda.getDate());
 			aux.venda.getListaItens().listarElementos();
 			aux = aux.prox;
-			cont++;
 		}
 		System.out.println("\n ---------------------------------------------------------------\n");
 		return true;

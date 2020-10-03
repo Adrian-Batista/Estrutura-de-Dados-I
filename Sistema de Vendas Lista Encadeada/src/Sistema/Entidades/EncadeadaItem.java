@@ -35,11 +35,11 @@ public class EncadeadaItem {
 		double total = 0;
 		double soma = 0;
 		int cont = 0;
-		
+
 		if(tamanho == 0) {
 			return false;
 		}
-		
+
 		while(aux!=null){
 			System.out.println(cont + " ) Item: " + aux.item.getProduto().getNome() + " | Valor : " + aux.item.getProduto().getPreco() 
 					+ " | Quantidade: " + aux.item.getQuantidade() + " | total: R$ " + (soma = aux.item.getQuantidade() * aux.item.getProduto().getPreco()));
@@ -90,18 +90,6 @@ public class EncadeadaItem {
 		tamanho++;
 		return true;
 	}
-	
-	/*public Produto VerificaProduto(String verifica){
-		if (tamanho == 0)
-			return null;
-
-		Elemento aux = inicio;
-		while(aux.prox != null){
-			if (aux.item.getProduto().getNome().contentEquals(verifica))
-				return aux.item.getProduto();
-		}
-		return null;
-	}*/
 
 	public Elemento getElemento(int indice){
 		if (indice < 0 || indice > tamanho-1)

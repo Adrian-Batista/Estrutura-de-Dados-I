@@ -3,7 +3,7 @@ package Sistema.Entidades;
 public class Venda {
 	private int date;
 	private EncadeadaItem listaItens;
-	
+
 	public Venda(int date, EncadeadaItem listaItens) {
 		super();
 		this.date = date;
@@ -25,5 +25,5 @@ public class Venda {
 	public void setIListaItens(EncadeadaItem listaItens) {
 		this.listaItens = listaItens;
 	}
-	
+
 }
