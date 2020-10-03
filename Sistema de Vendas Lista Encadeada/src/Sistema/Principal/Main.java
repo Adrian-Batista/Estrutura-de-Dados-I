@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import Sistema.Entidades.EncadeadaItem;
 import Sistema.Entidades.EncadeadaProduto;
+import Sistema.Entidades.EncadeadaVenda;
 import Sistema.Entidades.Item;
 import Sistema.Entidades.Produto;
 import Sistema.Entidades.Venda;
@@ -14,11 +15,11 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		int opcao = 0;
 		int indice = 0;
+		
+		EncadeadaProduto objProduto = new EncadeadaProduto();
+		EncadeadaVenda objVenda = new EncadeadaVenda();
+		
 		do {
-
-			EncadeadaProduto objProduto = new EncadeadaProduto();
-			EncadeadaItem objItem = new EncadeadaItem();
-
 
 			if(opcao!=0)
 				Main.LimparTela();
@@ -137,25 +138,34 @@ public class Main {
 				break;
 
 			case 2: // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ADICIONAR VENDAS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-				Venda venda = new Venda(0, null);
-				Item item = new Item(null, 0);
-				Produto prodVenda = new Produto(null, 0);
+				
+				EncadeadaItem objItem = new EncadeadaItem();
+				Venda venda = new Venda(0, objItem);
+				
+				
 				System.out.println("Digite a data da venda:");
 				venda.setDate(entrada.nextInt());
 				entrada.nextLine();
 
-				int opc = 0;
+				int opc = 1;
 				int cond = 0;
 				do {
+					Produto prodVenda = new Produto(null, 0);
+					Item item = new Item(prodVenda, 0);
 					do {
 						cond = 0;
-						System.out.println("Digite o nome do Produto: ");
+						System.out.println("Digite o Nome do produto: ");
 						String verifica = entrada.nextLine();
-						prodVenda = objProduto.VerificaProduto(verifica);
-						if(prodVenda==null) {
+						
+						
+						
+						item.setProduto(objProduto.VerificaProduto(verifica));
+						
+						
+						
+						if(item.getProduto().getNome() == null) {
 							Main.LimparTela();
-							System.out.println("Nome não localizado tente novamente!\n\n");
+							System.out.println("Produto não localizado tente novamente!\n\n");
 							cond++;
 						}
 					}while(cond != 0);
@@ -163,7 +173,9 @@ public class Main {
 					System.out.println("Digite a quantidade: ");
 					item.setQuantidade(entrada.nextInt());
 					entrada.nextLine();
-
+					
+					objItem.inserirElementoFim(item);
+					
 					do {
 						System.out.println("Deseja adicionar mais algum Item na Venda?");
 						System.out.println("Selecione 1 para SIM");
@@ -172,7 +184,10 @@ public class Main {
 						entrada.nextLine();
 					}while(opc != 1 && opc != 2);
 
-				}while(opc!=0);
+				}while(opc == 1);
+				
+				venda.setIListaItens(objItem);
+				objVenda.inserirElementoFim(venda);
 
 				break;
 
@@ -183,9 +198,8 @@ public class Main {
 
 			case 3: // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ LISTAR VENDAS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-				/*venda.getDate();
-				venda.getListaItens().listarElementos();
-				System.in.read();*/
+				objVenda.listarElementos();
+				System.in.read();
 
 				break;
 

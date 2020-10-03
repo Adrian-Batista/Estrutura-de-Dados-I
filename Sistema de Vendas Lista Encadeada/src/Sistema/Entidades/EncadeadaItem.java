@@ -39,7 +39,7 @@ public class EncadeadaItem {
 		}
 
 		while(aux!=null){
-			System.out.println(cont + " ) Item: " + aux.item.getProduto().getNome() + " | Valor : " + aux.item.getProduto().getPreco());
+			System.out.println(cont + " ) Item: " + aux.item.getProduto().getNome() + " | Valor : " + aux.item.getProduto().getPreco() + " | Quantidade: " + aux.item.getQuantidade());
 			aux = aux.prox;
 			cont++;
 		}
