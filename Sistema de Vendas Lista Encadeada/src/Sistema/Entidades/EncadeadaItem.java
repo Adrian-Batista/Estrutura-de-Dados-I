@@ -32,17 +32,22 @@ public class EncadeadaItem {
 
 	public Boolean listarElementos(){
 		Elemento aux = inicio;
+		double total = 0;
+		double soma = 0;
 		int cont = 0;
 		
 		if(tamanho == 0) {
 			return false;
 		}
-
+		
 		while(aux!=null){
-			System.out.println(cont + " ) Item: " + aux.item.getProduto().getNome() + " | Valor : " + aux.item.getProduto().getPreco() + " | Quantidade: " + aux.item.getQuantidade());
+			System.out.println(cont + " ) Item: " + aux.item.getProduto().getNome() + " | Valor : " + aux.item.getProduto().getPreco() 
+					+ " | Quantidade: " + aux.item.getQuantidade() + " | total: R$ " + (soma = aux.item.getQuantidade() * aux.item.getProduto().getPreco()));
+			total += soma;
 			aux = aux.prox;
 			cont++;
 		}
+		System.out.println("\t\t\t\t\t\tTOTAL: R$ " + total);
 		return true;
 	}
 

@@ -39,13 +39,13 @@ public class EncadeadaVenda {
 		}
 
 		while(aux!=null){
-			System.out.println("\n -----------------------------------------------\n");
+			System.out.println("\n ---------------------------------------------------------------\n");
 			System.out.println(" Data da Venda: "  + aux.venda.getDate());
 			aux.venda.getListaItens().listarElementos();
 			aux = aux.prox;
 			cont++;
 		}
-		System.out.println("\n -----------------------------------------------\n");
+		System.out.println("\n ---------------------------------------------------------------\n");
 		return true;
 	}
 
